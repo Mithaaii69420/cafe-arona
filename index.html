@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cafe Order</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>☕ Cafe Ordering System</h1>
+
+<label>Select Table:</label>
+<select id="table">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+</select>
+
+<h2>Menu</h2>
+
+<div class="menu">
+
+<div class="item">
+<h3>Maggi ₹60</h3>
+<button onclick="addItem('Maggi',60)">Add</button>
+</div>
+
+<div class="item">
+<h3>Tea ₹20</h3>
+<button onclick="addItem('Tea',20)">Add</button>
+</div>
+
+<div class="item">
+<h3>Coffee ₹40</h3>
+<button onclick="addItem('Coffee',40)">Add</button>
+</div>
+
+<div class="item">
+<h3>Pasta ₹120</h3>
+<button onclick="addItem('Pasta',120)">Add</button>
+</div>
+
+<div class="item">
+<h3>Water Bottle ₹20</h3>
+<button onclick="addItem('Water Bottle',20)">Add</button>
+</div>
+
+</div>
+
+<h2>Your Order</h2>
+<ul id="cart"></ul>
+
+<button onclick="placeOrder()">Place Order</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>
