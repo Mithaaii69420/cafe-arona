@@ -2,16 +2,51 @@
 <html>
 <head>
 <title>Admin Dashboard</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+font-family:Arial;
+background:#121212;
+color:white;
+}
+
+.order{
+background:#1e1e1e;
+margin:20px;
+padding:20px;
+border-radius:10px;
+}
+</style>
+
 </head>
 
 <body>
 
-<h1>📋 Live Cafe Orders</h1>
+<h1>🔥 Cafe Live Orders</h1>
 
 <div id="orders"></div>
 
-<script src="admin.js"></script>
+<script>
+
+setInterval(load,1000);
+
+function load(){
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
+
+let html="";
+
+orders.forEach(o=>{
+html+=`
+<div class="order">
+<h3>${o.table}</h3>
+<p>${o.items.join(", ")}</p>
+</div>`;
+});
+
+document.getElementById("orders").innerHTML=html;
+}
+
+</script>
 
 </body>
 </html>
