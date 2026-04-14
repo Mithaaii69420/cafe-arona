@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Orders</title>
+<title>Luxury Cafe Dashboard</title>
 
 <style>
 body{
-font-family:Arial;
-background:#121212;
+background:#0b0b0b;
 color:white;
+font-family:Poppins;
 }
 
 .order{
-background:#1e1e1e;
-margin:20px;
-padding:20px;
-border-radius:10px;
+background:#1a1a1a;
+margin:25px;
+padding:25px;
+border-radius:15px;
+border-left:6px solid gold;
 }
 </style>
 
@@ -22,7 +23,7 @@ border-radius:10px;
 
 <body>
 
-<h1>🔥 Cafe Orders</h1>
+<h1>☕ Live Luxury Orders</h1>
 
 <div id="orders"></div>
 
@@ -31,6 +32,7 @@ border-radius:10px;
 setInterval(load,1000);
 
 function load(){
+
 let orders=JSON.parse(localStorage.getItem("orders"))||[];
 
 let html="";
@@ -40,6 +42,7 @@ html+=`
 <div class="order">
 <h2>${o.table}</h2>
 <p>${o.items.join(", ")}</p>
+<small>${o.time}</small>
 </div>`;
 });
 
