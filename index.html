@@ -3,82 +3,60 @@
 <head>
 <title>Cafe Aroma</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
 <style>
 
 body{
 margin:0;
-font-family:Poppins;
-background:#0f0f0f;
+font-family:Arial;
+background:#111;
 color:white;
 text-align:center;
 }
 
 /* HERO */
-header{
+.hero{
 background:url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") center/cover;
-padding:120px 20px;
+padding:120px;
 font-size:40px;
-font-weight:700;
-}
-
-/* TABLE SELECT */
-select{
-padding:10px;
-font-size:18px;
-margin:20px;
-border-radius:6px;
+font-weight:bold;
 }
 
 /* MENU GRID */
 .menu{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
 padding:40px;
 }
 
 /* CARD */
 .card{
-background:#1a1a1a;
-border-radius:15px;
+background:#1c1c1c;
+border-radius:12px;
 overflow:hidden;
-transition:.3s;
-box-shadow:0 0 15px rgba(0,0,0,.6);
+box-shadow:0 0 15px black;
 }
 
-.card:hover{
-transform:translateY(-10px);
-}
-
-/* SAME IMAGE SIZE */
 .card img{
 width:100%;
-height:180px;
+height:200px;
 object-fit:cover;
 }
 
-/* BUTTON */
 button{
-background:#ff6b00;
+background:#ff6600;
 border:none;
-padding:12px 18px;
-margin:15px;
+padding:12px;
 color:white;
-font-size:16px;
-border-radius:6px;
+margin:15px;
 cursor:pointer;
+border-radius:6px;
 }
 
-button:hover{
-background:#ff8533;
-}
-
-/* ORDER LIST */
-#cart{
-list-style:none;
+select{
+padding:10px;
 font-size:18px;
+margin:20px;
 }
 
 </style>
@@ -86,10 +64,10 @@ font-size:18px;
 
 <body>
 
-<header>
-☕ Cafe Aroma  
-<br>Order From Your Table
-</header>
+<div class="hero">
+☕ Cafe Aroma
+<br>Fresh Taste Everyday
+</div>
 
 <h2>Select Table</h2>
 
@@ -106,39 +84,34 @@ font-size:18px;
 
 <div class="menu">
 
-<!-- MAGGIE -->
 <div class="card">
-<img src="https://images.unsplash.com/photo-1604908554162-7c8c0e7c1b52">
-<h3>Maggie ₹60</h3>
-<button onclick="add('Maggie')">Add</button>
+<img src="https://images.unsplash.com/photo-1604908177522-429c9c5f2b16">
+<h3>Maggie</h3>
+<button onclick="add('Maggie')">Order</button>
 </div>
 
-<!-- TEA -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9">
-<h3>Tea ₹20</h3>
-<button onclick="add('Tea')">Add</button>
+<h3>Tea</h3>
+<button onclick="add('Tea')">Order</button>
 </div>
 
-<!-- COFFEE -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085">
-<h3>Coffee ₹40</h3>
-<button onclick="add('Coffee')">Add</button>
+<h3>Coffee</h3>
+<button onclick="add('Coffee')">Order</button>
 </div>
 
-<!-- PASTA -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb">
-<h3>Pasta ₹120</h3>
-<button onclick="add('Pasta')">Add</button>
+<h3>Pasta</h3>
+<button onclick="add('Pasta')">Order</button>
 </div>
 
-<!-- WATER -->
 <div class="card">
 <img src="https://images.unsplash.com/photo-1564419320403-38a91bde6f2c">
-<h3>Water Bottle ₹20</h3>
-<button onclick="add('Water Bottle')">Add</button>
+<h3>Water Bottle</h3>
+<button onclick="add('Water Bottle')">Order</button>
 </div>
 
 </div>
@@ -146,7 +119,7 @@ font-size:18px;
 <h2>Your Order</h2>
 <ul id="cart"></ul>
 
-<button onclick="order()">Place Order</button>
+<button onclick="placeOrder()">Place Order</button>
 
 <script>
 
@@ -154,34 +127,26 @@ let cart=[];
 
 function add(item){
 cart.push(item);
-show();
+document.getElementById("cart").innerHTML+=`<li>${item}</li>`;
 }
 
-function show(){
-let ul=document.getElementById("cart");
-ul.innerHTML="";
-cart.forEach(i=>{
-ul.innerHTML+=`<li>${i}</li>`;
-});
-}
+function placeOrder(){
 
-function order(){
 let table=document.getElementById("table").value;
 
 let orders=JSON.parse(localStorage.getItem("orders"))||[];
 
 orders.push({
 table:table,
-items:cart,
-time:new Date().toLocaleTimeString()
+items:cart
 });
 
 localStorage.setItem("orders",JSON.stringify(orders));
 
-alert("✅ Order Sent To Kitchen!");
+alert("Order Sent Successfully");
 
 cart=[];
-show();
+document.getElementById("cart").innerHTML="";
 }
 
 </script>
