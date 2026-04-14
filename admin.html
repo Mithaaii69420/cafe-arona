@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Dashboard</title>
+<title>Cafe Admin</title>
 
 <style>
 body{
-font-family:Arial;
+font-family:Poppins;
 background:#121212;
 color:white;
 }
 
 .order{
-background:#1e1e1e;
+background:#1f1f1f;
 margin:20px;
 padding:20px;
-border-radius:10px;
+border-radius:12px;
+box-shadow:0 0 10px black;
 }
 </style>
 
@@ -22,7 +23,7 @@ border-radius:10px;
 
 <body>
 
-<h1>🔥 Cafe Live Orders</h1>
+<h1>🔥 Live Cafe Orders</h1>
 
 <div id="orders"></div>
 
@@ -38,8 +39,9 @@ let html="";
 orders.forEach(o=>{
 html+=`
 <div class="order">
-<h3>${o.table}</h3>
+<h2>${o.table}</h2>
 <p>${o.items.join(", ")}</p>
+<small>${o.time}</small>
 </div>`;
 });
 
