@@ -1,53 +1,108 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cafe Order</title>
-<link rel="stylesheet" href="style.css">
+<title>Cafe Aroma</title>
+
+<style>
+body{
+font-family:Arial;
+background:#111;
+color:white;
+text-align:center;
+margin:0;
+}
+
+header{
+background:url("https://images.unsplash.com/photo-1509042239860-f550ce710b93");
+background-size:cover;
+padding:80px;
+font-size:35px;
+font-weight:bold;
+}
+
+.menu{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+padding:40px;
+}
+
+.card{
+background:#1c1c1c;
+padding:20px;
+border-radius:15px;
+width:200px;
+box-shadow:0 0 10px black;
+}
+
+.card img{
+width:100%;
+border-radius:10px;
+}
+
+button{
+background:#ff5722;
+border:none;
+padding:10px 15px;
+color:white;
+cursor:pointer;
+margin-top:10px;
+border-radius:6px;
+}
+</style>
 </head>
 
 <body>
 
-<h1>☕ Cafe Ordering System</h1>
+<header>
+☕ Cafe Aroma <br>
+Order From Your Table
+</header>
 
-<label>Select Table:</label>
+<h2>Select Table</h2>
+
 <select id="table">
-<option>1</option>
-<option>2</option>
-<option>3</option>
-<option>4</option>
-<option>5</option>
-<option>6</option>
-<option>7</option>
-<option>8</option>
+<option>Table 1</option>
+<option>Table 2</option>
+<option>Table 3</option>
+<option>Table 4</option>
+<option>Table 5</option>
+<option>Table 6</option>
+<option>Table 7</option>
+<option>Table 8</option>
 </select>
-
-<h2>Menu</h2>
 
 <div class="menu">
 
-<div class="item">
-<h3>Maggi ₹60</h3>
-<button onclick="addItem('Maggi',60)">Add</button>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1604908177522-429c9c5f2b16">
+<h3>Maggie ₹60</h3>
+<button onclick="add('Maggie')">Add</button>
 </div>
 
-<div class="item">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1523906630133-f6934a1ab2b9">
 <h3>Tea ₹20</h3>
-<button onclick="addItem('Tea',20)">Add</button>
+<button onclick="add('Tea')">Add</button>
 </div>
 
-<div class="item">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
 <h3>Coffee ₹40</h3>
-<button onclick="addItem('Coffee',40)">Add</button>
+<button onclick="add('Coffee')">Add</button>
 </div>
 
-<div class="item">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb">
 <h3>Pasta ₹120</h3>
-<button onclick="addItem('Pasta',120)">Add</button>
+<button onclick="add('Pasta')">Add</button>
 </div>
 
-<div class="item">
-<h3>Water Bottle ₹20</h3>
-<button onclick="addItem('Water Bottle',20)">Add</button>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1564419320403-38a91bde6f2c">
+<h3>Water ₹20</h3>
+<button onclick="add('Water')">Add</button>
 </div>
 
 </div>
@@ -55,9 +110,43 @@
 <h2>Your Order</h2>
 <ul id="cart"></ul>
 
-<button onclick="placeOrder()">Place Order</button>
+<button onclick="order()">Place Order</button>
 
-<script src="script.js"></script>
+<script>
+
+let cart=[];
+
+function add(item){
+cart.push(item);
+show();
+}
+
+function show(){
+let ul=document.getElementById("cart");
+ul.innerHTML="";
+cart.forEach(i=>{
+ul.innerHTML+=`<li>${i}</li>`;
+});
+}
+
+function order(){
+let table=document.getElementById("table").value;
+
+let orders=JSON.parse(localStorage.getItem("orders"))||[];
+
+orders.push({
+table:table,
+items:cart
+});
+
+localStorage.setItem("orders",JSON.stringify(orders));
+
+alert("Order Sent!");
+
+cart=[];
+show();
+}
+</script>
 
 </body>
 </html>
