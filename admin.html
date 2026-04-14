@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Cafe Admin</title>
+<title>Admin Orders</title>
 
 <style>
 body{
-font-family:Poppins;
+font-family:Arial;
 background:#121212;
 color:white;
 }
 
 .order{
-background:#1f1f1f;
+background:#1e1e1e;
 margin:20px;
 padding:20px;
-border-radius:12px;
-box-shadow:0 0 10px black;
+border-radius:10px;
 }
 </style>
 
@@ -23,7 +22,7 @@ box-shadow:0 0 10px black;
 
 <body>
 
-<h1>🔥 Live Cafe Orders</h1>
+<h1>🔥 Cafe Orders</h1>
 
 <div id="orders"></div>
 
@@ -41,7 +40,6 @@ html+=`
 <div class="order">
 <h2>${o.table}</h2>
 <p>${o.items.join(", ")}</p>
-<small>${o.time}</small>
 </div>`;
 });
 
